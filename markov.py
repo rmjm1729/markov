@@ -1,4 +1,5 @@
 import random
+import time # Import the time module to calculate runtime
 
 def build_markov_chain(text):
     """
@@ -11,73 +12,61 @@ def build_markov_chain(text):
         dict: A dictionary representing the Markov chain.
               Keys are words, and values are lists of words that follow.
     """
-    # Split the text into a list of words
     words = text.split()
-    
-    # The dictionary to hold the Markov chain model
     chain = {}
-    
-    # Iterate through the list of words to build the chain
     for i in range(len(words) - 1):
         current_word = words[i]
         next_word = words[i+1]
-        
-        # If the current word is already in our chain, append the next word to its list
         if current_word in chain:
             chain[current_word].append(next_word)
-        # Otherwise, create a new entry for the current word
         else:
             chain[current_word] = [next_word]
-            
     return chain
 
-def generate_text(chain, length=50):
-    """
-    Generates text using the Markov chain model.
+def generate_text(chain, length=100, start_word=None):
 
-    Args:
-        chain (dict): The Markov chain model.
-        length (int): The number of words to generate.
-
-    Returns:
-        str: The generated text.
-    """
+    #Generates text using the Markov chain model.
     if not chain:
         return "The chain is empty. Cannot generate text."
 
-    # Choose a random starting word from the keys of the chain
-    current_word = random.choice(list(chain.keys()))
+    
+    # Check if a valid start_word is provided by the user
+    if start_word and start_word in chain:
+        current_word = start_word
+    else:
+        # Inform the user if their word was not found or not provided
+        if start_word:
+            print(f"(Note: '{start_word}' not found in text. Starting with a random word.)")
+        # Fallback to a random word if no valid start word is given
+        current_word = random.choice(list(chain.keys()))
+    
     generated_words = [current_word]
     
-    # Generate words one by one
     for _ in range(length - 1):
-        # Check if the current word has any followers
         if current_word in chain and chain[current_word]:
-            # Choose a random word from the list of followers
             next_word = random.choice(chain[current_word])
             generated_words.append(next_word)
             current_word = next_word
         else:
-            # If a word has no followers, break the loop
             break
             
     return ' '.join(generated_words)
 
-# --- Main part of the script ---
+
 if __name__ == "__main__":
+    
+    
+    
     try:
-        # Get the filename from the user
         filename = input("Enter the name of the text file (e.g., 'sample.txt'): ")
-        
-        # Read the content of the file
+        start_word_input = input("Enter the first word (or press Enter for random): ").strip()
+        start_time = time.time()
         with open(filename, 'r', encoding='utf-8') as f:
-            text_data = f.read()
-            
-        # Build the Markov chain from the text data
+            text_data = f.read()      
         markov_model = build_markov_chain(text_data)
         
-        # Generate new text using the model
-        new_text = generate_text(markov_model, length=100)
+        # Pass the user's chosen start word to the generator function
+        new_text = generate_text(markov_model, length=100, start_word=start_word_input)
         
         print("\n--- Generated Text ---")
         print(new_text)
@@ -86,3 +75,12 @@ if __name__ == "__main__":
         print(f"Error: The file '{filename}' was not found.")
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
+    finally:
+        # --- FEATURE 2: Calculate and display the runtime ---
+        end_time = time.time()
+        runtime = end_time - start_time
+        print(f"\n--- Program finished in {runtime:.4f} seconds. ---")
+'''
+First test: Data: Shapesperes works first word:Othello
+
+Othello guard, I will you have sumptuously re-edified; Here they look you, And why, my left now, after you. He did speak that I'll begin. MARSHAL. Sound trumpets; let him I' th' neck answer for I dare offer. GRATIANO. Here's the appetite I know not again; I must win the while! THIRD MESSENGER. All princely presence They think thee to come there. CAIUS. By gar, de la robe? ALICE. Les doigts? ALICE. D'elbow. Comment appelez-vous le possession of his period. Where is our queen. MAECENAS. Now powers As those whom I but squeezing you will be sorry it me;'''
