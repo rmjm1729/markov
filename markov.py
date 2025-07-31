@@ -84,3 +84,7 @@ if __name__ == "__main__":
 First test: Data: Shapesperes works first word:Othello
 
 Othello guard, I will you have sumptuously re-edified; Here they look you, And why, my left now, after you. He did speak that I'll begin. MARSHAL. Sound trumpets; let him I' th' neck answer for I dare offer. GRATIANO. Here's the appetite I know not again; I must win the while! THIRD MESSENGER. All princely presence They think thee to come there. CAIUS. By gar, de la robe? ALICE. Les doigts? ALICE. D'elbow. Comment appelez-vous le possession of his period. Where is our queen. MAECENAS. Now powers As those whom I but squeezing you will be sorry it me;'''
+"""
+Data: Doestevesky's works
+why had an hour I only the medical experts, not procure such meanness?” said the sake of her, Dmitri Fyodorovitch, she was perfectly innocent blood in love _me_, my apartment of himself, went out his own two days before, indeed. The old woman and his ardent young gentleman and Burdovsky has yet that young fellow was her pardon for about the utmost gravity of evidence. But his comrades heard about you are sure to.” Of course you gentle creature, for an idea! Three ladies, including paying for the four o’clock, he had been called in singularly good deal of menace,
+"""
